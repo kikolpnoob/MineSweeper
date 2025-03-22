@@ -6,12 +6,106 @@
 
 
      static void Main(string[] args) {
-         int[,] mines = GenerateMines(3, 10, 10);
-         Movement(3, 10, 10, mines);
+        int[,] mines = GenerateMines(3, 10, 10);
+        Movement(3, 10, 10, mines);
 
+      //Menu();
      }
 
 
+     static void Menu() {
+         Console.ForegroundColor = ConsoleColor.DarkYellow;
+         Console.WriteLine("███╗   ███╗██╗███╗   ██╗███████╗███████╗██╗    ██╗███████╗███████╗██████╗ ███████╗██████╗");
+         Console.WriteLine("████╗ ████║██║████╗  ██║██╔════╝██╔════╝██║    ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗");
+         Console.WriteLine("██╔████╔██║██║██╔██╗ ██║█████╗  ███████╗██║ █╗ ██║█████╗  █████╗  ██████╔╝█████╗  ██████╔╝");
+         Console.WriteLine("██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ╚════██║██║███╗██║██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗");
+         Console.WriteLine("██║ ╚═╝ ██║██║██║ ╚████║███████╗███████║╚███╔███╔╝███████╗███████╗██║     ███████╗██║  ██║");
+         Console.WriteLine("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝");
+         Console.ResetColor();
+       
+         Console.WriteLine();
+         Console.WriteLine();
+         Console.WriteLine();
+
+         Console.ForegroundColor = ConsoleColor.Red;
+         Console.WriteLine("Začať hru");
+         Console.ResetColor();
+         Console.WriteLine("Ako hrať");
+         Console.WriteLine("Koniec");
+         
+         int aktualMenu = 1;
+         int aktualSpot = 0;
+         int maxPozicia = 0;
+
+         String[] menu1 = { "Začať hru.", "Ako hrať?", "Koniec" };
+         
+
+         while (true) {
+             if (aktualMenu == 1) {
+                 maxPozicia = 2;
+             } 
+             
+             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+             switch (keyInfo.Key) {
+                 case ConsoleKey.UpArrow:
+                     
+                     if (aktualSpot == 0) {
+                         continue;
+                     } else {
+                         aktualSpot--;
+                     }
+                     
+                     break;
+                 
+                 case ConsoleKey.DownArrow:
+
+                     if (aktualSpot == maxPozicia ) {
+                         continue;
+                     } else {
+                       aktualSpot++;  
+                     }
+                     
+                     break;
+                 
+                 case ConsoleKey.Enter:
+
+                     if (aktualMenu == 1 && aktualSpot == 2) {
+                         Environment.Exit(0);
+                     }
+                     
+                     break;
+             }
+             
+             Console.Clear();
+             Console.ForegroundColor = ConsoleColor.DarkYellow;
+             Console.WriteLine("███╗   ███╗██╗███╗   ██╗███████╗███████╗██╗    ██╗███████╗███████╗██████╗ ███████╗██████╗");
+             Console.WriteLine("████╗ ████║██║████╗  ██║██╔════╝██╔════╝██║    ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗");
+             Console.WriteLine("██╔████╔██║██║██╔██╗ ██║█████╗  ███████╗██║ █╗ ██║█████╗  █████╗  ██████╔╝█████╗  ██████╔╝");
+             Console.WriteLine("██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ╚════██║██║███╗██║██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗");
+             Console.WriteLine("██║ ╚═╝ ██║██║██║ ╚████║███████╗███████║╚███╔███╔╝███████╗███████╗██║     ███████╗██║  ██║");
+             Console.WriteLine("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝");
+             Console.ResetColor();
+       
+             Console.WriteLine();
+             Console.WriteLine();
+             Console.WriteLine();
+
+             if (aktualMenu == 1) {
+
+                 for (int i = 0; i < menu1.Length; i++) {
+                     if (aktualSpot == i) {
+                         Console.ForegroundColor = ConsoleColor.Red;
+                     }
+                     Console.WriteLine(menu1[i]);
+                     Console.ResetColor();
+                 }
+
+             }
+             
+         }
+     }
+     
+     
      static int[,] GenerateMines(int pocetMin, int riadkyPola, int stlpcePola) {
          Random random = new Random();
 
@@ -23,8 +117,8 @@
              }
          }
 
-         int randomRiadok = 0;
-         int randomStlpec = 0;
+         int randomRiadok;
+         int randomStlpec;
 
          for (int i = 1; i <= pocetMin; i++) {
              randomRiadok = random.Next(riadkyPola);
@@ -33,16 +127,33 @@
              if (minyCisla[randomRiadok, randomStlpec] != 9) {
                  minyCisla[randomRiadok, randomStlpec] = 9;
 
-                 if ( 0 <= (randomRiadok - 1) && 0 <= (randomStlpec - 1) && minyCisla[randomRiadok - 1, randomStlpec - 1] != 9) { minyCisla[randomRiadok - 1, randomStlpec - 1]++; }
-                 if ( 0 <= (randomRiadok - 1) && minyCisla[randomRiadok - 1, randomStlpec] != 9) { minyCisla[randomRiadok - 1, randomStlpec]++; }
-                 if ( 0 <= (randomRiadok - 1) && (randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok - 1, randomStlpec + 1] != 9) { minyCisla[randomRiadok - 1, randomStlpec + 1]++; }
+                 if (0 <= (randomRiadok - 1) && 0 <= (randomStlpec - 1) && minyCisla[randomRiadok - 1, randomStlpec - 1] != 9) {
+                     minyCisla[randomRiadok - 1, randomStlpec - 1]++;
+                 }
+                 if (0 <= (randomRiadok - 1) && minyCisla[randomRiadok - 1, randomStlpec] != 9) {
+                     minyCisla[randomRiadok - 1, randomStlpec]++;
+                 }
+                 if (0 <= (randomRiadok - 1) && (randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok - 1, randomStlpec + 1] != 9) {
+                     minyCisla[randomRiadok - 1, randomStlpec + 1]++;
+                 }
+                 
+                 if (0 <= (randomStlpec - 1) && minyCisla[randomRiadok, randomStlpec - 1] != 9) {
+                     minyCisla[randomRiadok, randomStlpec - 1]++;
+                 }
+                 if ((randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok, randomStlpec + 1] != 9) {
+                     minyCisla[randomRiadok, randomStlpec + 1]++;
+                 }
+                 
+                 if ((randomRiadok + 1) < riadkyPola && 0 <= (randomStlpec - 1) && minyCisla[randomRiadok + 1, randomStlpec - 1] != 9) {
+                     minyCisla[randomRiadok + 1, randomStlpec - 1]++;
+                 }
+                 if ((randomRiadok + 1) < riadkyPola && minyCisla[randomRiadok + 1, randomStlpec] != 9) {
+                     minyCisla[randomRiadok + 1, randomStlpec]++;
+                 }
 
-                 if ( 0 <= (randomStlpec - 1) && minyCisla[randomRiadok, randomStlpec - 1] != 9) { minyCisla[randomRiadok, randomStlpec - 1]++; }
-                 if ( (randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok, randomStlpec + 1] != 9) { minyCisla[randomRiadok, randomStlpec + 1]++; }
-                
-                 if ( (randomRiadok + 1) < riadkyPola && 0 <= (randomStlpec - 1) && minyCisla[randomRiadok + 1, randomStlpec - 1] != 9) { minyCisla[randomRiadok + 1, randomStlpec - 1]++; }
-                 if ( (randomRiadok + 1) < riadkyPola && minyCisla[randomRiadok + 1, randomStlpec] != 9) { minyCisla[randomRiadok + 1, randomStlpec]++; }
-                 if ( (randomRiadok + 1) < riadkyPola && (randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok + 1, randomStlpec] != 9) { minyCisla[randomRiadok + 1, randomStlpec + 1]++; }
+                 if ((randomRiadok + 1) < riadkyPola && (randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok + 1, randomStlpec] != 9) {
+                     minyCisla[randomRiadok + 1, randomStlpec + 1]++;
+                 }
 
              }
          }
@@ -209,45 +320,31 @@
                          for (int j = 0; j < stlpcePola; j++)
                          {
 
-                             if (mines[i, j] == 9)
-                             {
+                             if (mines[i, j] == 9) {
 
-                                 if (miny[i, j] == "P")
-                                 {
+                                 if (miny[i, j] == "P") {
                                      continue;
-                                 }
-                                 else
-                                 {
-                                     for (int k = 0; k < riadkyPola; k++)
-                                     {
+                                 } else {
+                                     for (int k = 0; k < riadkyPola; k++) {
                                          // Prejde celou dráhou a nájde míny a odhalí ich
-                                         for (int l = 0; l < stlpcePola; l++)
-                                         {
-                                             if (mines[k, l] == 9)
-                                             {
+                                         for (int l = 0; l < stlpcePola; l++) {
+                                             if (mines[k, l] == 9) {
                                                  miny[k, l] = mines[k, l].ToString();
                                              }
                                          }
                                      }
 
                                      Console.Clear();
-                                     for (int k = 0; k < riadkyPola; k++)
-                                     {
-                                         for (int l = 0; l < stlpcePola; l++)
-                                         {
-
-                                             if (mines[k, l] == 9)
-                                             {
+                                     for (int k = 0; k < riadkyPola; k++) {
+                                         for (int l = 0; l < stlpcePola; l++) {
+                                             
+                                             if (mines[k, l] == 9) {
                                                  Console.ForegroundColor = ConsoleColor.Red;
-                                             }
-                                             else
-                                             {
+                                             } else {
                                                  Console.ResetColor();
                                              }
-
                                              Console.Write(miny[k, l] + " ");
                                          }
-
                                          Console.WriteLine();
                                      }
 
@@ -421,26 +518,3 @@
         }
     }
  }
-
-   
-
-
-
- /*
-    static void Menu() {
-        Console.ForegroundColor = ConsoleColor.DarkYellow;
-       Console.WriteLine("███╗   ███╗██╗███╗   ██╗███████╗███████╗██╗    ██╗███████╗███████╗██████╗ ███████╗██████╗");
-       Console.WriteLine("████╗ ████║██║████╗  ██║██╔════╝██╔════╝██║    ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗");
-       Console.WriteLine("██╔████╔██║██║██╔██╗ ██║█████╗  ███████╗██║ █╗ ██║█████╗  █████╗  ██████╔╝█████╗  ██████╔╝");
-       Console.WriteLine("██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ╚════██║██║███╗██║██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗");
-       Console.WriteLine("██║ ╚═╝ ██║██║██║ ╚████║███████╗███████║╚███╔███╔╝███████╗███████╗██║     ███████╗██║  ██║");
-       Console.WriteLine("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝");
-       Console.ResetColor();
-       
-       Console.WriteLine();
-       Console.WriteLine();
-       
-       
-
-    }s
- */
