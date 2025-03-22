@@ -6,8 +6,8 @@
 
 
      static void Main(string[] args) {
-         int[,] mines = GenerateMines(15, 10, 10);
-         Movement(15, 10, 10, mines);
+         int[,] mines = GenerateMines(3, 10, 10);
+         Movement(3, 10, 10, mines);
 
      }
 
@@ -47,21 +47,19 @@
              }
          }
 
-    /*     for (int i = 0; i < riadkyPola; i++) {
+     for (int i = 0; i < riadkyPola; i++) {
              for (int j = 0; j < stlpcePola; j++) {
                  Console.Write(minyCisla[i, j] + " ");
              }
              
              Console.WriteLine();
          }
-*/
+
 
          return minyCisla;
      }
 
-
-
-
+     
 
 
      static void Movement(int pocetMin, int riadkyPola, int stlpcePola, int[,] mines) {
@@ -73,16 +71,8 @@
                  miny[i, j] = "#";
              }
          }
-
-         int[] vlajkySuradnice = new int[pocetMin * 2]; //TODO: Pridať while loop ktory pri odstraneny bude hladať tú istú pozíciu ako ma current position
-         for (int i = 0; i < vlajkySuradnice.Length; i++) {
-             vlajkySuradnice[i] = riadkyPola + 1;
-         }
          
          int vlajkyPocet = 0;
-
-
-
 
          int[] aktualSpot = { 0, 0 }; // Aktuálna pozícia hráča
 
@@ -139,36 +129,9 @@
                      if (miny[aktualSpot[0], aktualSpot[1]] == "P") { // Kontrola či miesto obsahuje vlajku (odstranienie vlajky) TODO: Pridať že k ze sa na odhalene polia nebudu dat na min{
                          miny[aktualSpot[0], aktualSpot[1]] = "#";
                          vlajkyPocet--;
-                         
-                         for (int i = 0; i < pocetMin * 2; i++) {
-                             if (i % 2 != 0) {
-                                 continue;
-                             } else {
-                                 if (aktualSpot[0] == vlajkySuradnice[i] && aktualSpot[1] == vlajkySuradnice[i + 1]) {
-                                     vlajkySuradnice[i] = riadkyPola + 1;
-                                     vlajkySuradnice[i + 1] = riadkyPola + 1;
-                                 }
-                             }
-                         }
-                     }
-                     else if (miny[aktualSpot[0], aktualSpot[1]] != "P" && vlajkyPocet < pocetMin) { // Kontrola či miesto neobsahuje vlajku a či sa už nedosiahol maximalny počet vlajok (pre pridanie vlajky)
+                     } else if (miny[aktualSpot[0], aktualSpot[1]] != "P" && vlajkyPocet < pocetMin) { // Kontrola či miesto neobsahuje vlajku a či sa už nedosiahol maximalny počet vlajok (pre pridanie vlajky)
                          miny[aktualSpot[0], aktualSpot[1]] = "P";
                          vlajkyPocet++;
-                         
-                         for (int i = 0; i < pocetMin * 2; i++) {
-                             if (i % 2 != 0) {
-                                 continue;
-                             } else {
-                                 if (vlajkySuradnice[i] != riadkyPola + 1) {
-                                     continue;
-                                 } else {
-                                     vlajkySuradnice[i] = aktualSpot[0];
-                                     vlajkySuradnice[i + 1] = aktualSpot[1];
-                                     break;
-                                 }
-                             }
-                         }
-                         
                      }
 
                      break;
@@ -236,6 +199,80 @@
                      }
 
                     
+
+                     break;
+                 case ConsoleKey.C:
+                     
+                     if (vlajkyPocet == pocetMin ) {
+
+                     for (int i = 0; i < riadkyPola; i++) {
+                         for (int j = 0; j < stlpcePola; j++)
+                         {
+
+                             if (mines[i, j] == 9)
+                             {
+
+                                 if (miny[i, j] == "P")
+                                 {
+                                     continue;
+                                 }
+                                 else
+                                 {
+                                     for (int k = 0; k < riadkyPola; k++)
+                                     {
+                                         // Prejde celou dráhou a nájde míny a odhalí ich
+                                         for (int l = 0; l < stlpcePola; l++)
+                                         {
+                                             if (mines[k, l] == 9)
+                                             {
+                                                 miny[k, l] = mines[k, l].ToString();
+                                             }
+                                         }
+                                     }
+
+                                     Console.Clear();
+                                     for (int k = 0; k < riadkyPola; k++)
+                                     {
+                                         for (int l = 0; l < stlpcePola; l++)
+                                         {
+
+                                             if (mines[k, l] == 9)
+                                             {
+                                                 Console.ForegroundColor = ConsoleColor.Red;
+                                             }
+                                             else
+                                             {
+                                                 Console.ResetColor();
+                                             }
+
+                                             Console.Write(miny[k, l] + " ");
+                                         }
+
+                                         Console.WriteLine();
+                                     }
+
+                                     Console.ResetColor();
+                                     Console.WriteLine("Prehral si"); // TODO: Upraviť text
+                                     Console.ReadKey();
+                                     // TODO: Pridať návrat do menu
+                                     return;
+                                 }
+
+                             }
+                             else
+                             {
+                                 continue;
+                             }
+                         }
+                     }
+                     
+                     Console.Clear();
+                     Console.WriteLine("Vyhral si"); // TODO: Upraviť text
+                     Console.ReadKey();
+                     // TODO: Pridať návrat do menu
+                     return;
+                     
+                     }
 
                      break;
              }
