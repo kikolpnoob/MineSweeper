@@ -6,10 +6,7 @@
 
 
      static void Main(string[] args) {
-        int[,] mines = GenerateMines(3, 10, 10);
-        Movement(3, 10, 10, mines);
-
-      //Menu();
+      Menu();
      }
 
 
@@ -38,39 +35,83 @@
          int maxPozicia = 0;
 
          String[] menu1 = { "Začať hru.", "Ako hrať?", "Koniec" };
-         
+         String[] menu2 = { "Začiatočník", "Pokročilý", "Expert", "Custom", "Späť" };
+
+         int customRiadky = 0;
+         int customStlpce = 0;
+         int customMiny = 0;
 
          while (true) {
              if (aktualMenu == 1) {
                  maxPozicia = 2;
-             } 
+             } else if (aktualMenu == 2) {
+                 maxPozicia = 4;
+             }
              
              ConsoleKeyInfo keyInfo = Console.ReadKey(true);
              switch (keyInfo.Key) {
+                 
                  case ConsoleKey.UpArrow:
-                     
                      if (aktualSpot == 0) {
                          continue;
                      } else {
                          aktualSpot--;
                      }
-                     
                      break;
                  
                  case ConsoleKey.DownArrow:
-
                      if (aktualSpot == maxPozicia ) {
                          continue;
                      } else {
                        aktualSpot++;  
                      }
-                     
                      break;
                  
                  case ConsoleKey.Enter:
 
-                     if (aktualMenu == 1 && aktualSpot == 2) {
+                     if (aktualMenu == 1 && aktualSpot == 0) { //Možnosť Začať hru
+                         aktualMenu = 2;
+                     } else if (aktualMenu == 1 && aktualSpot == 2) { // Možnosť Koniec
                          Environment.Exit(0);
+                     } else if (aktualMenu == 2 && aktualSpot == 0) { // Možnosť Začiatočník
+                         Console.Clear();
+                         int[,] mines = GenerateMines(10, 9, 9);
+                         Movement(10, 9, 9, mines);
+                     } else if (aktualMenu == 2 && aktualSpot == 1) { // Možnosť Pokročilý
+                         Console.Clear();
+                         int[,] mines = GenerateMines(40, 16, 16);
+                         Movement(40, 16, 16, mines);
+                     } else if (aktualMenu == 2 && aktualSpot == 2) { //Možnosť Expert
+                         Console.Clear();
+                         int[,] mines = GenerateMines(99, 16, 30);
+                         Movement(99, 16, 30, mines);
+                     } else if (aktualMenu == 2 && aktualSpot == 3) { // Možnosť Custom       TODO : Dorobiť overenia 
+                         Console.Clear();
+                         Console.ForegroundColor = ConsoleColor.DarkYellow;
+                         Console.WriteLine("███╗   ███╗██╗███╗   ██╗███████╗███████╗██╗    ██╗███████╗███████╗██████╗ ███████╗██████╗");
+                         Console.WriteLine("████╗ ████║██║████╗  ██║██╔════╝██╔════╝██║    ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗");
+                         Console.WriteLine("██╔████╔██║██║██╔██╗ ██║█████╗  ███████╗██║ █╗ ██║█████╗  █████╗  ██████╔╝█████╗  ██████╔╝");
+                         Console.WriteLine("██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ╚════██║██║███╗██║██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗");
+                         Console.WriteLine("██║ ╚═╝ ██║██║██║ ╚████║███████╗███████║╚███╔███╔╝███████╗███████╗██║     ███████╗██║  ██║");
+                         Console.WriteLine("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝");
+                         Console.ResetColor();
+       
+                         Console.WriteLine();
+                         Console.WriteLine();
+                         Console.WriteLine();
+
+                         Console.WriteLine("Kolko chces mat riadkov ?"); // TODO: Upraviť text pri každej otazke
+                         customRiadky = Convert.ToInt32(Console.ReadLine());
+                         Console.WriteLine("Kolko chces mat stlpcov ?");
+                         customStlpce = Convert.ToInt32(Console.ReadLine());
+                         Console.WriteLine("Kolko chces mat min ?");
+                         customMiny = Convert.ToInt32(Console.ReadLine());
+                         
+                         int[,] mines = GenerateMines(customMiny, customRiadky, customStlpce);
+                         Movement(customMiny, customRiadky, customStlpce, mines);
+                     } else if (aktualMenu == 2 && aktualSpot == 4) { // Možnosť Späť
+                         aktualMenu = 1;
+                         aktualSpot = 0;
                      }
                      
                      break;
@@ -91,7 +132,6 @@
              Console.WriteLine();
 
              if (aktualMenu == 1) {
-
                  for (int i = 0; i < menu1.Length; i++) {
                      if (aktualSpot == i) {
                          Console.ForegroundColor = ConsoleColor.Red;
@@ -99,9 +139,17 @@
                      Console.WriteLine(menu1[i]);
                      Console.ResetColor();
                  }
-
+             } else if (aktualMenu == 2) {
+                for (int i = 0; i < menu2.Length; i++) {
+                     if (aktualSpot == i) {
+                         Console.ForegroundColor = ConsoleColor.Red;
+                     }
+                     Console.WriteLine(menu2[i]);
+                     Console.ResetColor(); 
+                }
              }
              
+
          }
      }
      
@@ -157,15 +205,7 @@
 
              }
          }
-
-     for (int i = 0; i < riadkyPola; i++) {
-             for (int j = 0; j < stlpcePola; j++) {
-                 Console.Write(minyCisla[i, j] + " ");
-             }
-             
-             Console.WriteLine();
-         }
-
+         
 
          return minyCisla;
      }
@@ -205,7 +245,7 @@
          while (true) {
              // Slúži na kontrolu inputu a interakcie s hrou
              ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
+             
              switch (keyInfo.Key) {
 
                  case ConsoleKey.LeftArrow:
@@ -216,7 +256,7 @@
                      break;
 
                  case ConsoleKey.RightArrow:
-                     if (aktualSpot[1] != 9) {
+                     if (aktualSpot[1] != stlpcePola - 1) {
                          aktualSpot[1]++;
                      }
 
@@ -230,17 +270,17 @@
                      break;
 
                  case ConsoleKey.DownArrow:
-                     if (aktualSpot[0] != 9) {
+                     if (aktualSpot[0] != riadkyPola - 1) {
                          aktualSpot[0]++;
                      }
 
                      break;
                  case ConsoleKey.P: // Placement vlajky
                      
-                     if (miny[aktualSpot[0], aktualSpot[1]] == "P") { // Kontrola či miesto obsahuje vlajku (odstranienie vlajky) TODO: Pridať že k ze sa na odhalene polia nebudu dat na min{
+                     if (miny[aktualSpot[0], aktualSpot[1]] == "P") { // Kontrola či miesto obsahuje vlajku (odstranienie vlajky)
                          miny[aktualSpot[0], aktualSpot[1]] = "#";
                          vlajkyPocet--;
-                     } else if (miny[aktualSpot[0], aktualSpot[1]] != "P" && vlajkyPocet < pocetMin) { // Kontrola či miesto neobsahuje vlajku a či sa už nedosiahol maximalny počet vlajok (pre pridanie vlajky)
+                     } else if (miny[aktualSpot[0], aktualSpot[1]] == "#" && vlajkyPocet < pocetMin) { // Kontrola či miesto neobsahuje vlajku a či sa už nedosiahol maximalny počet vlajok (pre pridanie vlajky)
                          miny[aktualSpot[0], aktualSpot[1]] = "P";
                          vlajkyPocet++;
                      }
@@ -250,7 +290,7 @@
 
                      if (miny[aktualSpot[0], aktualSpot[1]] == "#") { //Kontroluje či pole je skryté
 
-                         if (mines[aktualSpot[0], aktualSpot[1]] == 9) { // TODO: Odhalia sa všetky míni a hráč môže niečo stlačiť pre koniec neskorej navrat do menu
+                         if (mines[aktualSpot[0], aktualSpot[1]] == 9) { // 
 
                              for (int i = 0; i < riadkyPola; i++) { // Prejde celou dráhou a nájde míny a odhalí ich
                                  for (int j = 0; j < stlpcePola; j++) {
@@ -277,11 +317,10 @@
                              }
 
                              Console.ResetColor();
-                             Console.WriteLine(
-                                 "\nBOOM! Narazil si na mínu! Stlač čokolvek pre návrat do menu..."); // TODO: Upraviť text
+                             Console.WriteLine("\nBOOM! Narazil si na mínu! Stlač čokolvek pre návrat do menu..."); // TODO: Upraviť text
                              Console.ReadKey();
-                             // TODO: Pridať návrat do menu
-                             return;
+                             Console.Clear();
+                             Menu();
 
                          } else if (mines[aktualSpot[0], aktualSpot[1]] != 0) { // Keď v okoli pola je mina
                              
@@ -351,8 +390,8 @@
                                      Console.ResetColor();
                                      Console.WriteLine("Prehral si"); // TODO: Upraviť text
                                      Console.ReadKey();
-                                     // TODO: Pridať návrat do menu
-                                     return;
+                                     Console.Clear();
+                                     Menu();
                                  }
 
                              }
@@ -366,8 +405,8 @@
                      Console.Clear();
                      Console.WriteLine("Vyhral si"); // TODO: Upraviť text
                      Console.ReadKey();
-                     // TODO: Pridať návrat do menu
-                     return;
+                     Console.Clear();
+                     Menu();
                      
                      }
 
