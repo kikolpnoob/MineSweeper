@@ -6,7 +6,8 @@
 
 
      static void Main(string[] args) {
-      Menu();
+         int[,] mines = GenerateMines(99, 16, 30);
+         Movement(99, 16, 30, mines);
      }
 
 
@@ -168,44 +169,72 @@
          int randomRiadok;
          int randomStlpec;
 
+         
          for (int i = 1; i <= pocetMin; i++) {
              randomRiadok = random.Next(riadkyPola);
              randomStlpec = random.Next(stlpcePola);
 
              if (minyCisla[randomRiadok, randomStlpec] != 9) {
+                 
                  minyCisla[randomRiadok, randomStlpec] = 9;
 
-                 if (0 <= (randomRiadok - 1) && 0 <= (randomStlpec - 1) && minyCisla[randomRiadok - 1, randomStlpec - 1] != 9) {
-                     minyCisla[randomRiadok - 1, randomStlpec - 1]++;
-                 }
-                 if (0 <= (randomRiadok - 1) && minyCisla[randomRiadok - 1, randomStlpec] != 9) {
-                     minyCisla[randomRiadok - 1, randomStlpec]++;
-                 }
-                 if (0 <= (randomRiadok - 1) && (randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok - 1, randomStlpec + 1] != 9) {
-                     minyCisla[randomRiadok - 1, randomStlpec + 1]++;
+                 if (0 <= (randomRiadok - 1) && 0 <= (randomStlpec - 1) && minyCisla[randomRiadok - 1, randomStlpec - 1] < 8) {
+                     if (minyCisla[randomRiadok - 1, randomStlpec - 1] + 1 <= 8) {
+                         minyCisla[randomRiadok - 1, randomStlpec - 1]++;
+                     }
                  }
                  
-                 if (0 <= (randomStlpec - 1) && minyCisla[randomRiadok, randomStlpec - 1] != 9) {
-                     minyCisla[randomRiadok, randomStlpec - 1]++;
-                 }
-                 if ((randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok, randomStlpec + 1] != 9) {
-                     minyCisla[randomRiadok, randomStlpec + 1]++;
+                 if (0 <= (randomRiadok - 1)) {
+                     if (minyCisla[randomRiadok - 1, randomStlpec] + 1 <= 8) {
+                         minyCisla[randomRiadok - 1, randomStlpec]++;
+                     }
                  }
                  
-                 if ((randomRiadok + 1) < riadkyPola && 0 <= (randomStlpec - 1) && minyCisla[randomRiadok + 1, randomStlpec - 1] != 9) {
-                     minyCisla[randomRiadok + 1, randomStlpec - 1]++;
+                 if (0 <= (randomRiadok - 1) && (randomStlpec + 1) < stlpcePola){
+                     if (minyCisla[randomRiadok - 1, randomStlpec + 1] + 1 <= 8) {
+                         minyCisla[randomRiadok - 1, randomStlpec + 1]++;
+                     }
                  }
-                 if ((randomRiadok + 1) < riadkyPola && minyCisla[randomRiadok + 1, randomStlpec] != 9) {
-                     minyCisla[randomRiadok + 1, randomStlpec]++;
+                 
+                 if (0 <= (randomStlpec - 1)) {
+                     if (minyCisla[randomRiadok, randomStlpec - 1] + 1 <= 8) {
+                         minyCisla[randomRiadok, randomStlpec - 1]++;
+                     }
+                 }
+                 if ((randomStlpec + 1) < stlpcePola) {
+                     if (minyCisla[randomRiadok, randomStlpec + 1] + 1 <= 8) {
+                         minyCisla[randomRiadok, randomStlpec + 1]++;
+                     }
+                 }
+                 
+                 if ((randomRiadok + 1) < riadkyPola && 0 <= (randomStlpec - 1)) {
+                     if (minyCisla[randomRiadok + 1, randomStlpec - 1] + 1 <= 8) {
+                         minyCisla[randomRiadok + 1, randomStlpec - 1]++;
+                     }
+                 }
+                 
+                 if ((randomRiadok + 1) < riadkyPola ) {
+                     if (minyCisla[randomRiadok + 1, randomStlpec] + 1 <= 8) {
+                         minyCisla[randomRiadok + 1, randomStlpec]++;
+                     }
                  }
 
-                 if ((randomRiadok + 1) < riadkyPola && (randomStlpec + 1) < stlpcePola && minyCisla[randomRiadok + 1, randomStlpec] != 9) {
-                     minyCisla[randomRiadok + 1, randomStlpec + 1]++;
+                 if ((randomRiadok + 1) < riadkyPola && (randomStlpec + 1) < stlpcePola) {
+                     if (minyCisla[randomRiadok + 1, randomStlpec + 1] + 1 <= 8) {
+                         minyCisla[randomRiadok + 1, randomStlpec + 1]++;
+                     }
                  }
 
              }
+             
          }
-         
+
+         for (int i = 0; i < riadkyPola; i++) {
+             for (int j = 0; j < stlpcePola; j++) {
+                 Console.Write(minyCisla[i, j] + " ");
+             }
+             Console.WriteLine();
+         }
 
          return minyCisla;
      }

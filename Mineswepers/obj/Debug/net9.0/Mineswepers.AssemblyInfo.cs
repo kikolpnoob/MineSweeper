@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mineswepers")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c86c471399eb860413c0afa3f62f667e0d16fa8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+797ad3fdf438e6c56b23d99f998086844638b6d0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mineswepers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mineswepers")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
