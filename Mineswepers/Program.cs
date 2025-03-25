@@ -113,6 +113,7 @@
                          Console.WriteLine("                                 ║ Koľko chceš mať mín? ║");
                          Console.WriteLine("                                 ╚══════════════════════╝");
                          customMiny = Convert.ToInt32(Console.ReadLine());
+                         Console.Clear();
                          
                          int[,] mines = GenerateMines(customMiny, customRiadky, customStlpce);
                          Movement(customMiny, customRiadky, customStlpce, mines);
