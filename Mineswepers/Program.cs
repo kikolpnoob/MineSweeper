@@ -1,42 +1,43 @@
 ﻿namespace MineSweeper;
 
- class Minesweeper
- {
-
-
-
+ class Minesweeper {
+     
      static void Main(string[] args) {
-         int[,] mines = GenerateMines(99, 16, 30);
-         Movement(99, 16, 30, mines);
+         Menu();
      }
 
 
      static void Menu() {
-         Console.ForegroundColor = ConsoleColor.DarkYellow;
+         Console.Clear();
+         Console.ForegroundColor = ConsoleColor.Yellow;
          Console.WriteLine("███╗   ███╗██╗███╗   ██╗███████╗███████╗██╗    ██╗███████╗███████╗██████╗ ███████╗██████╗");
          Console.WriteLine("████╗ ████║██║████╗  ██║██╔════╝██╔════╝██║    ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗");
          Console.WriteLine("██╔████╔██║██║██╔██╗ ██║█████╗  ███████╗██║ █╗ ██║█████╗  █████╗  ██████╔╝█████╗  ██████╔╝");
+         Console.ForegroundColor = ConsoleColor.DarkYellow;
          Console.WriteLine("██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ╚════██║██║███╗██║██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗");
          Console.WriteLine("██║ ╚═╝ ██║██║██║ ╚████║███████╗███████║╚███╔███╔╝███████╗███████╗██║     ███████╗██║  ██║");
          Console.WriteLine("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝");
          Console.ResetColor();
        
          Console.WriteLine();
-         Console.WriteLine();
-         Console.WriteLine();
+         
 
+
+         Console.WriteLine("                                    ╔════════════════╗");
+         Console.Write("                                    ║    » ");
          Console.ForegroundColor = ConsoleColor.Red;
-         Console.WriteLine("Začať hru");
+         Console.Write("Hrať");
          Console.ResetColor();
-         Console.WriteLine("Ako hrať");
-         Console.WriteLine("Koniec");
+         Console.WriteLine(" «    ║");
+         Console.WriteLine("                                    ║     Koniec     ║");
+         Console.WriteLine("                                    ╚════════════════╝");
          
          int aktualMenu = 1;
          int aktualSpot = 0;
          int maxPozicia = 0;
-
-         String[] menu1 = { "Začať hru.", "Ako hrať?", "Koniec" };
-         String[] menu2 = { "Začiatočník", "Pokročilý", "Expert", "Custom", "Späť" };
+         
+         String[] menu1 = {"                                    ║      Hrať      ║", "                                    ║     Koniec     ║"};
+         String[] menu2 = {"                                 ║       Amatér       ║", "                                 ║       Znalec       ║", "                                 ║       Expert       ║", "                                 ║       Custom       ║", "                                 ║        Späť        ║" };
 
          int customRiadky = 0;
          int customStlpce = 0;
@@ -88,24 +89,29 @@
                          Movement(99, 16, 30, mines);
                      } else if (aktualMenu == 2 && aktualSpot == 3) { // Možnosť Custom       TODO : Dorobiť overenia 
                          Console.Clear();
-                         Console.ForegroundColor = ConsoleColor.DarkYellow;
+                         Console.ForegroundColor = ConsoleColor.Yellow;
                          Console.WriteLine("███╗   ███╗██╗███╗   ██╗███████╗███████╗██╗    ██╗███████╗███████╗██████╗ ███████╗██████╗");
                          Console.WriteLine("████╗ ████║██║████╗  ██║██╔════╝██╔════╝██║    ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗");
                          Console.WriteLine("██╔████╔██║██║██╔██╗ ██║█████╗  ███████╗██║ █╗ ██║█████╗  █████╗  ██████╔╝█████╗  ██████╔╝");
+                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                          Console.WriteLine("██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ╚════██║██║███╗██║██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗");
                          Console.WriteLine("██║ ╚═╝ ██║██║██║ ╚████║███████╗███████║╚███╔███╔╝███████╗███████╗██║     ███████╗██║  ██║");
                          Console.WriteLine("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝");
                          Console.ResetColor();
        
                          Console.WriteLine();
-                         Console.WriteLine();
-                         Console.WriteLine();
 
-                         Console.WriteLine("Kolko chces mat riadkov ?"); // TODO: Upraviť text pri každej otazke
+                         Console.WriteLine("                               ╔══════════════════════════╗");
+                         Console.WriteLine("                               ║ Koľko chceš mať riadkov? ║"); 
+                         Console.WriteLine("                               ╚══════════════════════════╝");
                          customRiadky = Convert.ToInt32(Console.ReadLine());
-                         Console.WriteLine("Kolko chces mat stlpcov ?");
+                         Console.WriteLine("                               ╔══════════════════════════╗");
+                         Console.WriteLine("                               ║ Koľko chceš mať stĺpcov? ║");
+                         Console.WriteLine("                               ╚══════════════════════════╝");
                          customStlpce = Convert.ToInt32(Console.ReadLine());
-                         Console.WriteLine("Kolko chces mat min ?");
+                         Console.WriteLine("                                 ╔══════════════════════╗");
+                         Console.WriteLine("                                 ║ Koľko chceš mať mín? ║");
+                         Console.WriteLine("                                 ╚══════════════════════╝");
                          customMiny = Convert.ToInt32(Console.ReadLine());
                          
                          int[,] mines = GenerateMines(customMiny, customRiadky, customStlpce);
@@ -119,35 +125,88 @@
              }
              
              Console.Clear();
-             Console.ForegroundColor = ConsoleColor.DarkYellow;
+             Console.ForegroundColor = ConsoleColor.Yellow;
              Console.WriteLine("███╗   ███╗██╗███╗   ██╗███████╗███████╗██╗    ██╗███████╗███████╗██████╗ ███████╗██████╗");
              Console.WriteLine("████╗ ████║██║████╗  ██║██╔════╝██╔════╝██║    ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗");
              Console.WriteLine("██╔████╔██║██║██╔██╗ ██║█████╗  ███████╗██║ █╗ ██║█████╗  █████╗  ██████╔╝█████╗  ██████╔╝");
+             Console.ForegroundColor = ConsoleColor.DarkYellow;
              Console.WriteLine("██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ╚════██║██║███╗██║██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗");
              Console.WriteLine("██║ ╚═╝ ██║██║██║ ╚████║███████╗███████║╚███╔███╔╝███████╗███████╗██║     ███████╗██║  ██║");
              Console.WriteLine("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝");
              Console.ResetColor();
        
              Console.WriteLine();
-             Console.WriteLine();
-             Console.WriteLine();
 
              if (aktualMenu == 1) {
+                 Console.WriteLine("                                    ╔════════════════╗");
                  for (int i = 0; i < menu1.Length; i++) {
+                     
                      if (aktualSpot == i) {
-                         Console.ForegroundColor = ConsoleColor.Red;
+                         if (i == 0) {
+                             Console.Write("                                    ║    » ");
+                             Console.ForegroundColor = ConsoleColor.Red;
+                             Console.Write("Hrať");
+                             Console.ResetColor();
+                             Console.WriteLine(" «    ║");
+                         } else if (i == 1) {
+                             Console.Write("                                    ║   » ");
+                             Console.ForegroundColor = ConsoleColor.Red;
+                             Console.Write("Koniec");
+                             Console.ResetColor();
+                             Console.WriteLine(" «   ║");
+                         }
+                         
+                     } else {
+                         Console.WriteLine(menu1[i]);
                      }
-                     Console.WriteLine(menu1[i]);
-                     Console.ResetColor();
+                     
+                    
+                     
                  }
+                 Console.WriteLine("                                    ╚════════════════╝");
+                 
              } else if (aktualMenu == 2) {
+                 Console.WriteLine("                                 ╔════════════════════╗");
                 for (int i = 0; i < menu2.Length; i++) {
                      if (aktualSpot == i) {
-                         Console.ForegroundColor = ConsoleColor.Red;
+                         if (i == 0) {
+                             Console.Write("                                 ║     » ");
+                             Console.ForegroundColor = ConsoleColor.Red;
+                             Console.Write("Amatér");
+                             Console.ResetColor();
+                             Console.WriteLine(" «     ║");
+                         } else if (i == 1) {
+                             Console.Write("                                 ║     » ");
+                             Console.ForegroundColor = ConsoleColor.Red;
+                             Console.Write("Znalec");
+                             Console.ResetColor();
+                             Console.WriteLine(" «     ║");
+                         } else if (i == 2) {
+                             Console.Write("                                 ║     » ");
+                             Console.ForegroundColor = ConsoleColor.Red;
+                             Console.Write("Expert");
+                             Console.ResetColor();
+                             Console.WriteLine(" «     ║");  
+                         } else if (i == 3) {
+                             Console.Write("                                 ║     » ");
+                             Console.ForegroundColor = ConsoleColor.Red;
+                             Console.Write("Custom");
+                             Console.ResetColor();
+                             Console.WriteLine(" «     ║");  
+                         } else if (i == 4) {
+                             Console.Write("                                 ║      » ");
+                             Console.ForegroundColor = ConsoleColor.Red;
+                             Console.Write("Späť");
+                             Console.ResetColor();
+                             Console.WriteLine(" «      ║");  
+                         }
+                     } else {
+                         Console.WriteLine(menu2[i]);
                      }
-                     Console.WriteLine(menu2[i]);
-                     Console.ResetColor(); 
+                     
                 }
+                Console.WriteLine("                                 ╚════════════════════╝");
+
              }
              
 
@@ -229,20 +288,13 @@
              
          }
 
-         for (int i = 0; i < riadkyPola; i++) {
-             for (int j = 0; j < stlpcePola; j++) {
-                 Console.Write(minyCisla[i, j] + " ");
-             }
-             Console.WriteLine();
-         }
-
          return minyCisla;
      }
 
      
 
 
-     static void Movement(int pocetMin, int riadkyPola, int stlpcePola, int[,] mines) {
+     static void Movement(int pocetMin, int riadkyPola, int stlpcePola, int[,] mines) { // Funkcia s hlavnými akciami hry číta klávesy a vykonáva k nim pridelené akcie
 
          String[,] miny = new String[riadkyPola, stlpcePola]; // Pole ktoré sa zobrazuje počas hry, hráč sa v ňom pohybuje
 
@@ -346,7 +398,10 @@
                              }
 
                              Console.ResetColor();
-                             Console.WriteLine("\nBOOM! Narazil si na mínu! Stlač čokolvek pre návrat do menu..."); // TODO: Upraviť text
+                             Console.WriteLine();
+                             Console.WriteLine("╔══════════════════════════════════════════════════════════════════════════╗");
+                             Console.WriteLine("║ BOOM! Narazil si na mínu! Použi akékolvek tlačítko pre návrat do menu... ║"); 
+                             Console.WriteLine("╚══════════════════════════════════════════════════════════════════════════╝");
                              Console.ReadKey();
                              Console.Clear();
                              Menu();
@@ -417,13 +472,29 @@
                                      }
 
                                      Console.ResetColor();
-                                     Console.WriteLine("Prehral si"); // TODO: Upraviť text
+                                     Console.Clear();
+                                     Console.ForegroundColor = ConsoleColor.Red;
+                                     Console.WriteLine("██████  ██████  ███████ ██   ██ ██████   █████  ██          ███████ ██         ██ ");
+                                     Console.WriteLine("██   ██ ██   ██ ██      ██   ██ ██   ██ ██   ██ ██          ██      ██         ██ ");
+                                     Console.WriteLine("██████  ██████  █████   ███████ ██████  ███████ ██          ███████ ██         ██");
+                                     Console.WriteLine("██      ██   ██ ██      ██   ██ ██   ██ ██   ██ ██               ██ ██            ");
+                                     Console.WriteLine("██      ██   ██ ███████ ██   ██ ██   ██ ██   ██ ███████     ███████ ██         ██ ");
+                                     Console.ResetColor();
+                                     
+                                     Console.WriteLine();
+                                     Console.WriteLine("╔══════════════════════════════════════════════╗");
+                                     Console.WriteLine("║ Použi akékolvek tlačítko pre návrat do menu. ║");
+                                     Console.WriteLine("╚══════════════════════════════════════════════╝");
+                                     
                                      Console.ReadKey();
                                      Console.Clear();
                                      Menu();
                                  }
 
-                             }
+                             }                    
+                             
+
+
                              else
                              {
                                  continue;
@@ -432,7 +503,19 @@
                      }
                      
                      Console.Clear();
-                     Console.WriteLine("Vyhral si"); // TODO: Upraviť text
+                     Console.ForegroundColor = ConsoleColor.Green;
+                     Console.WriteLine("██    ██ ██    ██ ██   ██ ██████   █████  ██          ███████ ██         ██");
+                     Console.WriteLine("██    ██  ██  ██  ██   ██ ██   ██ ██   ██ ██          ██      ██         ██");
+                     Console.WriteLine("██    ██   ████   ███████ ██████  ███████ ██          ███████ ██         ██ ");
+                     Console.WriteLine(" ██  ██     ██    ██   ██ ██   ██ ██   ██ ██               ██ ██            ");
+                     Console.WriteLine("  ████      ██    ██   ██ ██   ██ ██   ██ ███████     ███████ ██         ██ ");
+                     Console.ResetColor();
+                     
+                     Console.WriteLine();
+                     Console.WriteLine("╔══════════════════════════════════════════════╗");
+                     Console.WriteLine("║ Použi akékolvek tlačítko pre návrat do menu. ║");
+                     Console.WriteLine("╚══════════════════════════════════════════════╝");
+                     
                      Console.ReadKey();
                      Console.Clear();
                      Menu();
@@ -450,15 +533,16 @@
 
      
 
-     static void VypisPole(int riadkyPola, int stlpcePola, int[] aktualSpot, String[,] miny) { // TODO : DOPLNIT VSADE
+     static void VypisPole(int riadkyPola, int stlpcePola, int[] aktualSpot, String[,] miny) { // Funkcia na vypísanie farebného herného pola 
          
+         Console.WriteLine();
         
          for (int i = 0; i < riadkyPola; i++) {
 
                  for (int j = 0; j < stlpcePola; j++) {
 
                      if (i == aktualSpot[0] && j == aktualSpot[1]) {
-                         Console.ForegroundColor = ConsoleColor.Red;
+                         Console.ForegroundColor = ConsoleColor.DarkRed;
                      } else if (miny[i,j] == "0") {
                          Console.ForegroundColor = ConsoleColor.DarkGray;
                      } else if (miny[i,j] == "1") {
@@ -477,7 +561,9 @@
                          Console.ForegroundColor = ConsoleColor.DarkMagenta;
                      } else if (miny[i,j] == "8") {
                          Console.ForegroundColor = ConsoleColor.Yellow;
-                     } else {
+                     } else if (miny[i,j] == "P") {
+                         Console.ForegroundColor = ConsoleColor.Red;
+                     }else {
                          Console.ResetColor();
                      }
 
