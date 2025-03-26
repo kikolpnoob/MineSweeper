@@ -12,3 +12,4 @@ C:\Users\kukko\RiderProjects\Mineswepers\Mineswepers\obj\Debug\net9.0\refint\Min
 C:\Users\kukko\RiderProjects\Mineswepers\Mineswepers\obj\Debug\net9.0\Mineswepers.pdb
 C:\Users\kukko\RiderProjects\Mineswepers\Mineswepers\obj\Debug\net9.0\Mineswepers.genruntimeconfig.cache
 C:\Users\kukko\RiderProjects\Mineswepers\Mineswepers\obj\Debug\net9.0\ref\Mineswepers.dll
+C:\Users\kukko\RiderProjects\Mineswepers\Mineswepers\obj\Debug\net9.0\Mineswepers.sourcelink.json
