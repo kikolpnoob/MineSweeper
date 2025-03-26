@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kukko\\RiderProjects\\MineSweeperr\\Mineswepers\\Mineswepers.csproj": {}
+    "C:\\Users\\kukko\\RiderProjects\\Mineswepers\\Mineswepers\\Mineswepers.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kukko\\RiderProjects\\MineSweeperr\\Mineswepers\\Mineswepers.csproj": {
+    "C:\\Users\\kukko\\RiderProjects\\Mineswepers\\Mineswepers\\Mineswepers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kukko\\RiderProjects\\MineSweeperr\\Mineswepers\\Mineswepers.csproj",
+        "projectUniqueName": "C:\\Users\\kukko\\RiderProjects\\Mineswepers\\Mineswepers\\Mineswepers.csproj",
         "projectName": "Mineswepers",
-        "projectPath": "C:\\Users\\kukko\\RiderProjects\\MineSweeperr\\Mineswepers\\Mineswepers.csproj",
+        "projectPath": "C:\\Users\\kukko\\RiderProjects\\Mineswepers\\Mineswepers\\Mineswepers.csproj",
         "packagesPath": "C:\\Users\\kukko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kukko\\RiderProjects\\MineSweeperr\\Mineswepers\\obj\\",
+        "outputPath": "C:\\Users\\kukko\\RiderProjects\\Mineswepers\\Mineswepers\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kukko\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\kukko\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
